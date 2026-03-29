@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dawid Harendarze Design — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-dark: #0f0f13;
+      --bg-mid: #1a1624;
+      --bg-light: #1e1a2e;
+      --accent: #c8b8ff;
+      --accent-dim: rgba(200,184,255,0.15);
+      --accent-border: rgba(200,184,255,0.25);
+      --text: #e8e8f0;
+      --text-muted: rgba(232,232,240,0.55);
+      --text-hint: rgba(232,232,240,0.3);
+      --border: rgba(255,255,255,0.08);
+      --card-bg: rgba(26,22,36,0.75);
+    }
+
+    @keyframes wave {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(135deg, #0f0f13, #1a1624, #0f0f13, #161320, #1e1a2e, #0f0f13);
+      background-size: 400% 400%;
+      animation: wave 12s ease infinite;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 3rem;
+      border-bottom: 0.5px solid var(--border);
+      background: rgba(15,15,19,0.6);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px; font-weight: 700;
+      color: var(--accent); letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 14px; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s;
+      font-weight: 300;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-bottom: 0.5px solid var(--border);
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 0.5px solid var(--accent-border);
+      border-radius: 20px; padding: 5px 16px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 700; line-height: 1.1;
+      color: #f0eeff;
+      margin-bottom: 1.25rem;
+      max-width: 700px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 17px; color: var(--text-muted);
+      max-width: 460px; line-height: 1.75;
+      margin-bottom: 2.5rem; font-weight: 300;
+    }
+    .hero-btn {
+      padding: 12px 28px; border-radius: 8px;
+      background: var(--accent); color: #1a1030;
+      font-family: 'Syne', sans-serif;
+      font-size: 14px; font-weight: 700;
+      border: none; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .hero-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* SECTIONS */
+    section { padding: 5rem 3rem; border-bottom: 0.5px solid var(--border); }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px; font-weight: 700;
+      color: #f0eeff; margin-bottom: 2.5rem;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border: 0.5px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .project-card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-3px);
+    }
+    .project-thumb {
+      width: 100%; height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+    }
+    .t1 { background: linear-gradient(135deg, #2a1f4a, #3d2a6b); }
+    .t2 { background: linear-gradient(135deg, #1a2e3a, #1a4a5a); }
+    .t3 { background: linear-gradient(135deg, #2e1a2e, #5a1a4a); }
+    .project-info { padding: 14px 16px; }
+    .project-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px; font-weight: 500;
+      color: var(--text); margin-bottom: 5px;
+    }
+    .project-type { font-size: 12px; color: var(--text-muted); font-weight: 300; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-text {
+      font-size: 16px; color: var(--text-muted);
+      line-height: 1.85; font-weight: 300;
+    }
+    .about-text p + p { margin-top: 1rem; }
+    .about-stats { display: flex; flex-direction: column; gap: 12px; }
+    .stat {
+      background: var(--card-bg); border: 0.5px solid var(--border);
+      border-radius: 10px; padding: 16px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 300; }
+    .stat-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px; font-weight: 700; color: var(--accent);
+    }
+
+    /* CONTACT */
+    .contact-box {
+      background: var(--card-bg);
+      border: 0.5px solid var(--accent-border);
+      border-radius: 14px; padding: 2.5rem;
+      text-align: center; max-width: 520px; margin: 0 auto;
+    }
+    .contact-box p {
+      color: var(--text-muted); font-size: 15px;
+      margin-bottom: 2rem; line-height: 1.75; font-weight: 300;
+    }
+    .contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .contact-link {
+      padding: 10px 20px; border-radius: 8px; font-size: 13px;
+      border: 0.5px solid var(--border); color: var(--text);
+      text-decoration: none; background: rgba(255,255,255,0.04);
+      transition: border-color 0.2s, background 0.2s;
+      font-weight: 300;
+    }
+    .contact-link:hover {
+      border-color: var(--accent-border);
+      background: var(--accent-dim);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 3rem; text-align: center;
+      font-size: 12px; color: var(--text-hint);
+      font-weight: 300;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.5rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .hero { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">DHD</span>
+    <ul class="nav-links">
+      <li><a href="#projekty">projekty</a></li>
+      <li><a href="#o-mnie">o mnie</a></li>
+      <li><a href="#kontakt">kontakt</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">grafik & projektant wizualny</div>
+    <h1>Tworzę rzeczy,<br>które <span>przyciągają wzrok</span></h1>
+    <p>Projektuję identyfikacje wizualne, materiały marketingowe i interfejsy, które łączą estetykę z funkcją.</p>
+    <a href="#projekty" class="hero-btn">Zobacz projekty</a>
+  </div>
+
+  <section id="projekty">
+    <div class="section-label">portfolio</div>
+    <div class="section-title">Moje projekty</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-thumb t1">✦</div>
+        <div class="project-info">
+          <div class="project-name">Rebranding Kawiarni</div>
+          <div class="project-type">identyfikacja wizualna</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb t2">◈</div>
+        <div class="project-info">
+          <div class="project-name">Kampania Social Media</div>
+          <div class="project-type">grafika & layout</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb t3">⬡</div>
+        <div class="project-info">
+          <div class="project-name">Plakat Festiwalowy</div>
+          <div class="project-type">typografia & ilustracja</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-mnie">
+    <div class="section-label">o mnie</div>
+    <div class="section-title">Kim jestem</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Cześć! Jestem Dawid — grafikiem z pasją do czystego, przemyślanego designu. Pracuję z klientami, którzy chcą, żeby ich marka wyróżniała się w tłumie.</p>
+        <p>Specjalizuję się w identyfikacji wizualnej i komunikacji graficznej. Każdy projekt traktuję indywidualnie — zależy mi na tym, żeby efekt końcowy był nie tylko piękny, ale też funkcjonalny.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-label">Lat doświadczenia</span>
+          <span class="stat-val">3+</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Zrealizowanych projektów</span>
+          <span class="stat-val">40+</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Zadowolonych klientów</span>
+          <span class="stat-val">28</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="section-label">kontakt</div>
+    <div class="section-title">Porozmawiajmy</div>
+    <div class="contact-box">
+      <p>Masz projekt do omówienia lub chcesz nawiązać współpracę? Napisz do mnie — odpiszę w ciągu 24 godzin.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:dawid@email.com">dawid@email.com</a>
+        <a class="contact-link" href="https://www.behance.net/dawidharendarzdesign" target="_blank">Behance</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/dawidharendarzdesign" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Dawid Harendarze Design — wszystkie prawa zastrzeżone</footer>
+
+</body>
+</html>
